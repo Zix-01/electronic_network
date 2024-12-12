@@ -1,4 +1,8 @@
 from pathlib import Path
+from celery.schedules import crontab
+from django.core.mail.backends import smtp
+import os
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,7 +22,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -26,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'electronic_network',
-    'django-filter',
+    'django_filters',
+    'users',
 
 ]
 
@@ -168,3 +173,6 @@ if CACHES_ENABLED:
             "LOCATION": os.getenv('LOCATION'),
         }
     }
+
+# Users
+AUTH_USER_MODEL = 'users.User'
